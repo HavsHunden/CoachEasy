@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 
 /**
@@ -19,12 +20,17 @@ import javax.swing.JPanel;
 public class MainPanel extends JPanel {
     
     JLabel text = new JLabel("Marklyft 2x5");
+    JTextField input = new JTextField();
     
     public MainPanel() {
         
         //test
         
         setLayout(new GridLayout(0, 1));
+        
+        input.setAlignmentX(TOP_ALIGNMENT);
+        input.setAlignmentY(TOP_ALIGNMENT);
+        add(input);
         
         text.setVerticalAlignment(JLabel.TOP);
         text.setHorizontalAlignment(JLabel.LEFT);
