@@ -7,7 +7,10 @@ package coacheasy;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 
 /**
  *
@@ -15,12 +18,21 @@ import javax.swing.JPanel;
  */
 public class MainPanel extends JPanel {
     
+    JLabel text = new JLabel("Marklyft 2x5");
+    
     public MainPanel() {
+        
+        setLayout(new GridLayout(0, 1));
+        
+        text.setVerticalAlignment(JLabel.TOP);
+        text.setHorizontalAlignment(JLabel.LEFT);
+        add(text);
     
     }
     
     public void paintComponent (Graphics g) {
-        g.setColor( Color.black );
+        g.setColor( Color.white );
         g.fillRect( 0, 0, 400, 400);
+        //text.paintComponents(g);
     }
 }

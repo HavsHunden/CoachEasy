@@ -8,6 +8,7 @@ package coacheasy;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  *
@@ -19,11 +20,14 @@ import javax.swing.JFrame;
 public class CoachEasy extends JFrame {
     
     MainPanel panel = new MainPanel();
+    JLabel text = new JLabel("test");
     
     public CoachEasy() {
         
         Container c = getContentPane();
         c.add(panel, BorderLayout.CENTER);
+        
+        
         
         setSize(400,400);
         setLocation(200,200);
