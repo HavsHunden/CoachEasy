@@ -22,6 +22,8 @@ public class MainPanel extends JPanel {
     
     public MainPanel() {
         
+        //test
+        
         setLayout(new GridLayout(0, 1));
         
         text.setVerticalAlignment(JLabel.TOP);
