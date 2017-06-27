@@ -27,8 +27,6 @@ public class CoachEasy extends JFrame {
         Container c = getContentPane();
         c.add(panel, BorderLayout.CENTER);
         
-        
-        
         setSize(400,400);
         setLocation(200,200);
         setVisible(true);

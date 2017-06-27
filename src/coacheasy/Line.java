@@ -19,12 +19,15 @@ import javax.swing.JPanel;
 
 
 public class Line extends JPanel {
+    String type = "default";
+    JLabel text = new JLabel(type);
     
-    JLabel text = new JLabel("Marklyft 2x5");
+    
     
     public Line() {
         
         setLayout(new GridLayout(1, 0));
+        
         
         text.setVerticalAlignment(JLabel.TOP);
         text.setHorizontalAlignment(JLabel.LEFT);
@@ -35,6 +38,11 @@ public class Line extends JPanel {
         g.setColor( Color.white );
         g.fillRect( 0, 0, 400, 400);
         //text.paintComponents(g);
+    }
+    
+    public void setType (String inputtype) {
+        text.setText(inputtype);
+        
     }
     String movement;
     String movementtype;
