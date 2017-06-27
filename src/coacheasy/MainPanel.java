@@ -21,8 +21,9 @@ import javax.swing.JTextField;
  */
 public class MainPanel extends JPanel implements ActionListener {
     
-    JLabel text = new JLabel("Marklyft 2x5");
     JTextField input = new JTextField();
+    Line line = new Line();
+    Line line2 = new Line();
     
     String inputtext;
     
@@ -32,22 +33,26 @@ public class MainPanel extends JPanel implements ActionListener {
         
         setLayout(new GridLayout(0, 1));
         
-        
         input.setAlignmentX(TOP_ALIGNMENT);
         input.setAlignmentY(TOP_ALIGNMENT);
         input.addActionListener(this);
         
         add(input);
         
-        text.setVerticalAlignment(JLabel.TOP);
-        text.setHorizontalAlignment(JLabel.LEFT);
-        add(text);
+        line.setAlignmentX(TOP_ALIGNMENT);
+        line.setAlignmentY(TOP_ALIGNMENT);
+        add(line);
+        
+        line2.setAlignmentX(TOP_ALIGNMENT);
+        line2.setAlignmentY(TOP_ALIGNMENT);
+        add(line2);
     
     }
     
     public void actionPerformed(ActionEvent evt) {
         inputtext = input.getText();
-        text.setText(inputtext);
+        line.text.setText(inputtext);
+        line2.text.setText(inputtext);
         
     }
     
