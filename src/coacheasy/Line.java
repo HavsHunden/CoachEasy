@@ -21,17 +21,24 @@ import javax.swing.JPanel;
 public class Line extends JPanel {
     String type = "default";
     JLabel text = new JLabel(type);
+    JLabel displayedRepsNSets;
     
     
     
-    public Line() {
+    public Line(String inputType, int inputSets, int inputReps) {
         
-        setLayout(new GridLayout(1, 0));
+        setLayout(new GridLayout(0, 2));
         
         
         text.setVerticalAlignment(JLabel.TOP);
         text.setHorizontalAlignment(JLabel.LEFT);
         add(text);
+        
+        displayedRepsNSets = new JLabel(inputSets + "x" + inputReps);
+        
+        displayedRepsNSets.setVerticalAlignment(JLabel.TOP);
+        displayedRepsNSets.setHorizontalAlignment(JLabel.LEFT);
+        add(displayedRepsNSets);
     }
     
     public void paintComponent (Graphics g) {

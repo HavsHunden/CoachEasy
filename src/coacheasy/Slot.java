@@ -6,6 +6,7 @@
 package coacheasy;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -14,9 +15,10 @@ import javax.swing.JPanel;
  * @author mabe6347
  */
 public class Slot extends JPanel {
-    Line line = new Line();
+    Line line;
+    Line warmupline;
     
-    int primaryIntensity;
+    double primaryIntensity;
     int primaryReps;
     int primarySets;
     int warmups;
@@ -26,8 +28,9 @@ public class Slot extends JPanel {
     public Slot (String inputtype, int inputPrimarySets, int inputPrimaryReps) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         
-        Dimension d = new Dimension(100,100);
+        Dimension d = new Dimension(300,100);
         
+        line = new Line(inputtype, inputPrimarySets, inputPrimaryReps);
         
         line.setAlignmentX(TOP_ALIGNMENT);
         line.setAlignmentY(TOP_ALIGNMENT);
@@ -37,8 +40,32 @@ public class Slot extends JPanel {
     }
     
     //This is for intensity controlled excercises
-    public Slot (String inputtype, int inputPrimarySets, int inputPrimaryReps, int inputPrimaryIntensity) {
+    public Slot (String inputtype, int inputPrimarySets, int inputPrimaryReps, double inputPrimaryIntensity) {
         
+        primaryIntensity = inputPrimaryIntensity;
+        
+        warmups = (int) Math.round((primaryIntensity-0.5)*10);
+        
+        
+        int i;
+        for (i=0; i<warmups; i=i+1) {
+            warmupline = new Line(inputtype, 1, inputPrimaryReps+1);
+            add(warmupline);
+        }
+        
+        setLayout(new GridLayout(warmups+1,0));
+        
+        Dimension d = new Dimension(300,20);
+        
+        line = new Line(inputtype, inputPrimarySets, inputPrimaryReps);
+        
+        line.setAlignmentX(TOP_ALIGNMENT);
+        line.setAlignmentY(TOP_ALIGNMENT);
+        line.setMaximumSize(d);
+        warmupline.setMaximumSize(d);
+        line.setType(inputtype);
+        add(line);
+
         
     }
     
