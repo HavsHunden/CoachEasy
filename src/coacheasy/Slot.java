@@ -15,10 +15,15 @@ import javax.swing.JPanel;
  */
 public class Slot extends JPanel {
     Line line = new Line();
-    Line line2 = new Line();
+    
+    int primaryIntensity;
+    int primaryReps;
+    int primarySets;
+    int warmups;
     
     
-    public Slot (String inputtype) {
+    //This is for complimentary excercises, it takes only type, sets and reps.
+    public Slot (String inputtype, int inputPrimarySets, int inputPrimaryReps) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         
         Dimension d = new Dimension(100,100);
@@ -29,12 +34,12 @@ public class Slot extends JPanel {
         line.setMaximumSize(d);
         line.setType(inputtype);
         add(line);
+    }
+    
+    //This is for intensity controlled excercises
+    public Slot (String inputtype, int inputPrimarySets, int inputPrimaryReps, int inputPrimaryIntensity) {
         
-        line2.setAlignmentX(TOP_ALIGNMENT);
-        line2.setAlignmentY(TOP_ALIGNMENT);
-        line2.setMaximumSize(d);
-        line2.setType(inputtype);
-        add(line2);
+        
     }
     
     

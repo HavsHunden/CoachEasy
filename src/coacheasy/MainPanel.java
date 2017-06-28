@@ -23,7 +23,7 @@ public class MainPanel extends JPanel implements ActionListener {
     
     JTextField input = new JTextField();
     
-    Slot slot = new Slot("Marklyft");
+    Slot slot = new Slot("Marklyft", 5, 2);
     
     String inputtext;
     
@@ -54,7 +54,6 @@ public class MainPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
         inputtext = input.getText();
         slot.line.text.setText(inputtext);
-        slot.line2.text.setText(inputtext);
         
     }
     
