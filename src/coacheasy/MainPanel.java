@@ -24,7 +24,7 @@ public class MainPanel extends JPanel implements ActionListener {
     JTextField input = new JTextField();
     
     Slot slot = new Slot("Komplement", 5, 5);
-    Slot slot2 = new Slot("Marklyft", 5, 2, 0.7);
+    Slot slot2 = new Slot("Marklyft", 5, 2, 0.8);
     
     String inputtext;
     
