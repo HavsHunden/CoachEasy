@@ -15,6 +15,9 @@ import javax.swing.JPanel;
 /**
  *
  * @author mabe6347
+ * 
+ * Lines are groups of sets of either undefined or one particular intensity. 
+ * Never different intensities.
  */
 
 
@@ -23,26 +26,7 @@ public class Line extends JPanel {
     String type = "default";
     JLabel text;
     JLabel displayedRepsNSets;
-    
-    
-    //Vanlig konstruktor
-//    public Line(String inputType, int inputSets, int inputReps) {
-//        
-//        setLayout(new GridLayout(0, 2));
-//        
-//        
-//        text.setVerticalAlignment(JLabel.TOP);
-//        text.setHorizontalAlignment(JLabel.LEFT);
-//        add(text);
-//        
-//        displayedRepsNSets = new JLabel(inputSets + "x" + inputReps);
-//        
-//        displayedRepsNSets.setVerticalAlignment(JLabel.TOP);
-//        displayedRepsNSets.setHorizontalAlignment(JLabel.LEFT);
-//        add(displayedRepsNSets);
-//    }
-    
-    
+
     //Construktor with GridBagLayout
     public Line(String inputType, int inputSets, int inputReps) {
         
@@ -53,7 +37,6 @@ public class Line extends JPanel {
         setLayout(m);
         
         //GridBagConstraints for the displaying of the exercise name
-        
         GridBagConstraints conType;
         conType = new GridBagConstraints();
         
@@ -68,7 +51,6 @@ public class Line extends JPanel {
         add(text);
         
         //GridBagConstraints for the displaying of sets and reps
-        
         GridBagConstraints conSetReps;
         conSetReps = new GridBagConstraints();
         
@@ -84,11 +66,11 @@ public class Line extends JPanel {
         add(displayedRepsNSets);
     }
     
-    public void paintComponent (Graphics g) {
-        g.setColor( Color.white );
-        g.fillRect( 0, 0, 400, 400);
-        //text.paintComponents(g);
-    }
+//    public void paintComponent (Graphics g) {
+//        g.setColor( Color.white );
+//        g.fillRect( 0, 0, 400, 400);
+//        //text.paintComponents(g);
+//    }
     
     public void setType (String inputtype) {
         text.setText(inputtype);

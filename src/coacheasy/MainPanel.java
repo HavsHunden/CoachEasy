@@ -6,11 +6,11 @@
 package coacheasy;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -19,45 +19,27 @@ import javax.swing.JTextField;
  *
  * @author mabe6347
  */
-public class MainPanel extends JPanel implements ActionListener {
+public class MainPanel extends JPanel{
     
-    JTextField input = new JTextField();
-    
-    Slot slot = new Slot("Komplement", 5, 5);
-    Slot slot2 = new Slot("Marklyft", 5, 2, 0.8);
-    
-    String inputtext;
-    
-    
+    Session session1 = new Session(2);
     
     public MainPanel() {
         
-        //test
+        GridBagLayout m = new GridBagLayout();
+        setLayout(m);
         
-        //setLayout(new GridLayout(0, 1));
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        GridBagConstraints conSession;
+        conSession = new GridBagConstraints();
         
-        
-        input.setAlignmentX(TOP_ALIGNMENT);
-        input.setAlignmentY(TOP_ALIGNMENT);
-        input.addActionListener(this);
-        
-        
-        Dimension d = new Dimension(100,100);
-        input.setMaximumSize(d);
-        
-        add(input);
-        
-        add(slot);
-        add(slot2);
-    
+        conSession.gridy = 0;
+        conSession.gridx = 0;
+        conSession.anchor = GridBagConstraints.NORTHWEST;
+        conSession.weighty = 1;
+        conSession.weightx = 1;
+        m.setConstraints(session1, conSession);        
+        add(session1); 
     }
     
-    public void actionPerformed(ActionEvent evt) {
-        inputtext = input.getText();
-        slot.line.text.setText(inputtext);
-        
-    }
     
     public void paintComponent (Graphics g) {
         g.setColor( Color.white );

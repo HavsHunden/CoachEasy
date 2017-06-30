@@ -5,16 +5,21 @@
  */
 package coacheasy;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 /**
  *
  * @author mabe6347
+ * 
+ * Slots are one group of Lines consisting of one type of movement.
+ * There are two types of slots represented as constructors - complimentary
+ * and intensity controlled.
  */
 public class Slot extends JPanel {
     Line line;
@@ -23,7 +28,7 @@ public class Slot extends JPanel {
     double primaryIntensity;
     int primaryReps;
     int primarySets;
-    int warmups;
+    int warmups = 0;
     
     
     //This is for complimentary excercises, it takes only type, sets and reps.
@@ -59,7 +64,6 @@ public class Slot extends JPanel {
         
         conLine.gridy = 0;
         conLine.gridx = 0;
-        //conLine.gridwidth = 5;
         conLine.anchor = GridBagConstraints.NORTHWEST;
         conLine.weighty = 1;
         conLine.weightx = 1;
@@ -73,11 +77,6 @@ public class Slot extends JPanel {
             m.setConstraints(warmupline, conLine);
             add(warmupline);
         }
-        
-//        setLayout(new GridLayout(warmups+1,0));
-//        
-//        Dimension d = new Dimension(300,20);
-        
 
         //Creating the primary line
         conLine.gridy = warmups;
@@ -89,5 +88,14 @@ public class Slot extends JPanel {
         
     }
     
+    public int getWarmups() {
+        return warmups;
+    }
+    
+//    public void paintComponent (Graphics g) {
+//        g.setColor( Color.red );
+//        //g.fillRect( 0, 0, 400, 400);
+//        //text.paintComponents(g);
+//    }
     
 }
