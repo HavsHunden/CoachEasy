@@ -21,23 +21,23 @@ import javax.swing.JTextField;
  */
 public class MainPanel extends JPanel{
     
-    Session session1 = new Session(2);
+    Week week = new Week(1);
     
     public MainPanel() {
         
         GridBagLayout m = new GridBagLayout();
         setLayout(m);
         
-        GridBagConstraints conSession;
-        conSession = new GridBagConstraints();
+        GridBagConstraints conWeek;
+        conWeek = new GridBagConstraints();
         
-        conSession.gridy = 0;
-        conSession.gridx = 0;
-        conSession.anchor = GridBagConstraints.NORTHWEST;
-        conSession.weighty = 1;
-        conSession.weightx = 1;
-        m.setConstraints(session1, conSession);        
-        add(session1); 
+        conWeek.gridy = 0;
+        conWeek.gridx = 0;
+        conWeek.anchor = GridBagConstraints.NORTHWEST;
+        conWeek.weighty = 1;
+        conWeek.weightx = 1;
+        m.setConstraints(week, conWeek);        
+        add(week); 
     }
     
     

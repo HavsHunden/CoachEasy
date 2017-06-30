@@ -27,6 +27,11 @@ public class Line extends JPanel {
     JLabel text;
     JLabel displayedRepsNSets;
 
+    @Override
+    public void setBackground(Color color) {
+        super.setBackground(color); //To change body of generated methods, choose Tools | Templates.
+    }
+
     //Construktor with GridBagLayout
     public Line(String inputType, int inputSets, int inputReps) {
         
