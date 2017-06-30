@@ -44,6 +44,8 @@ public class MainPanel extends JPanel{
     public void paintComponent (Graphics g) {
         g.setColor( Color.white );
         g.fillRect( 0, 0, 400, 400);
+        //session1.slotArray[0].paintComponents(g);
+        
         //text.paintComponents(g);
     }
 }

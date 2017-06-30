@@ -92,10 +92,10 @@ public class Slot extends JPanel {
         return warmups;
     }
     
-//    public void paintComponent (Graphics g) {
-//        g.setColor( Color.red );
-//        //g.fillRect( 0, 0, 400, 400);
-//        //text.paintComponents(g);
-//    }
+    public void paintComponent (Graphics g) {
+        g.setColor( Color.red );
+        g.fillRect( 0, 0, 400, 400);
+        //text.paintComponents(g);
+    }
     
 }

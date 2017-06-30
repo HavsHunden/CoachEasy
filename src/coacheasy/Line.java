@@ -33,6 +33,9 @@ public class Line extends JPanel {
         type = inputType;
         text = new JLabel(type);
         
+        text.setBackground(Color.red);
+        text.setOpaque(true);
+        
         GridBagLayout m = new GridBagLayout();
         setLayout(m);
         
@@ -60,8 +63,10 @@ public class Line extends JPanel {
         conSetReps.weightx = 3;
         conSetReps.anchor = GridBagConstraints.WEST;
         
-        displayedRepsNSets = new JLabel(inputSets + "x" + inputReps);
+        displayedRepsNSets = new JLabel("     " + inputSets + "x" + inputReps);
         m.setConstraints(displayedRepsNSets, conSetReps);
+        displayedRepsNSets.setBackground(Color.red);
+        displayedRepsNSets.setOpaque(true);
         
         add(displayedRepsNSets);
     }
