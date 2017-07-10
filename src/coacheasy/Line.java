@@ -33,12 +33,12 @@ public class Line extends JPanel {
     }
 
     //Construktor with GridBagLayout
-    public Line(String inputType, int inputSets, int inputReps) {
+    public Line(String inputType, int inputSets, int inputReps, Color color) {
         
         type = inputType;
         text = new JLabel(type);
         
-        text.setBackground(Color.red);
+        text.setBackground(color);
         text.setOpaque(true);
         
         GridBagLayout m = new GridBagLayout();
@@ -70,7 +70,7 @@ public class Line extends JPanel {
         
         displayedRepsNSets = new JLabel("     " + inputSets + "x" + inputReps);
         m.setConstraints(displayedRepsNSets, conSetReps);
-        displayedRepsNSets.setBackground(Color.red);
+        displayedRepsNSets.setBackground(color);
         displayedRepsNSets.setOpaque(true);
         
         add(displayedRepsNSets);

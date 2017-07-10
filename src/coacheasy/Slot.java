@@ -12,6 +12,8 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.io.FileReader;
+import java.lang.reflect.Field;
+import static javafx.scene.paint.Color.color;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -33,8 +35,8 @@ public class Slot extends JPanel {
     int warmups = 0;
     
     String name;
-    String color;
-    
+    String colorData;
+    Color color;
     
     //This is for complimentary excercises, it takes only type, sets and reps.
     public Slot (String inputtype, int inputPrimarySets, int inputPrimaryReps) {
@@ -42,7 +44,9 @@ public class Slot extends JPanel {
         
         Dimension d = new Dimension(300,20);
         
-        line = new Line(inputtype, inputPrimarySets, inputPrimaryReps);
+        color = Color.LIGHT_GRAY;
+        
+        line = new Line(inputtype, inputPrimarySets, inputPrimaryReps, color);
         
         line.setAlignmentX(TOP_ALIGNMENT);
         line.setAlignmentY(TOP_ALIGNMENT);
@@ -54,16 +58,22 @@ public class Slot extends JPanel {
     //This is for intensity controlled excercises
     public Slot (int excNumber, int inputPrimarySets, int inputPrimaryReps, double inputPrimaryIntensity) throws Exception {
         
+        //Getting data from database
         CSVReader reader = new CSVReader(new FileReader("data.csv"), ',', '"', 0);
-        
         String[] dataLine;
-        
         while ((dataLine = reader.readNext()) != null) {
             if (Integer.parseInt(dataLine[0]) == excNumber) {
                 name = dataLine[1];
-                color = dataLine[3];
+                colorData = dataLine[3];
                 //System.out.println(color);
             }
+        }
+        
+        try {
+            Field field = Class.forName("java.awt.Color").getField(colorData);
+            color = (Color) field.get(null);
+        } catch (Exception e) {
+            color = null; // Not defined
         }
         
         //Calculating how many warmups we need
@@ -87,7 +97,7 @@ public class Slot extends JPanel {
         //Creating the warmup lines
         int i;
         for (i=0; i<warmups; i=i+1) {
-            warmupline = new Line(name, 1, inputPrimaryReps+1);
+            warmupline = new Line(name, 1, inputPrimaryReps+1, color);
             conLine.gridy = i;
             
             m.setConstraints(warmupline, conLine);
@@ -96,7 +106,7 @@ public class Slot extends JPanel {
 
         //Creating the primary line
         conLine.gridy = warmups;
-        line = new Line(name, inputPrimarySets, inputPrimaryReps);
+        line = new Line(name, inputPrimarySets, inputPrimaryReps, color);
         
         m.setConstraints(line, conLine);
         add(line);
