@@ -7,6 +7,8 @@ package coacheasy;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -40,11 +42,15 @@ public class Session extends JPanel {
         add(title);
         
         for (i=0; i<inputNumberOfSlots; i++) {
-            Slot slot = new Slot ("Marklyft", 5, 5, 0.8);
-            slotArray[i] = slot;
-            conSlot.gridy++;
-            m.setConstraints(slotArray[i], conSlot);
-            add(slotArray[i]);
+            try {
+                Slot slot = new Slot (i+1, 5, 5, 0.8);
+                slotArray[i] = slot;
+                conSlot.gridy++;
+                m.setConstraints(slotArray[i], conSlot);
+                add(slotArray[i]);
+            } catch (Exception ex) {
+                Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }

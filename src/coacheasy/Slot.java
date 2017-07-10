@@ -5,11 +5,13 @@
  */
 package coacheasy;
 
+import com.opencsv.CSVReader;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.io.FileReader;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -30,6 +32,9 @@ public class Slot extends JPanel {
     int primarySets;
     int warmups = 0;
     
+    String name;
+    String color;
+    
     
     //This is for complimentary excercises, it takes only type, sets and reps.
     public Slot (String inputtype, int inputPrimarySets, int inputPrimaryReps) {
@@ -47,8 +52,19 @@ public class Slot extends JPanel {
     }
     
     //This is for intensity controlled excercises
-    public Slot (String inputtype, int inputPrimarySets, int inputPrimaryReps, double inputPrimaryIntensity) {
+    public Slot (int excNumber, int inputPrimarySets, int inputPrimaryReps, double inputPrimaryIntensity) throws Exception {
         
+        CSVReader reader = new CSVReader(new FileReader("data.csv"), ',', '"', 0);
+        
+        String[] dataLine;
+        
+        while ((dataLine = reader.readNext()) != null) {
+            if (Integer.parseInt(dataLine[0]) == excNumber) {
+                name = dataLine[1];
+                color = dataLine[3];
+                //System.out.println(color);
+            }
+        }
         
         //Calculating how many warmups we need
         primaryIntensity = inputPrimaryIntensity;
@@ -71,7 +87,7 @@ public class Slot extends JPanel {
         //Creating the warmup lines
         int i;
         for (i=0; i<warmups; i=i+1) {
-            warmupline = new Line(inputtype, 1, inputPrimaryReps+1);
+            warmupline = new Line(name, 1, inputPrimaryReps+1);
             conLine.gridy = i;
             
             m.setConstraints(warmupline, conLine);
@@ -80,7 +96,7 @@ public class Slot extends JPanel {
 
         //Creating the primary line
         conLine.gridy = warmups;
-        line = new Line(inputtype, inputPrimarySets, inputPrimaryReps);
+        line = new Line(name, inputPrimarySets, inputPrimaryReps);
         
         m.setConstraints(line, conLine);
         add(line);
@@ -93,8 +109,19 @@ public class Slot extends JPanel {
     }
     
     public void paintComponent (Graphics g) {
-        g.setColor( Color.red );
-        g.fillRect( 0, 0, 400, 400);
+        //None of this matters right now...
+        
+        System.out.println(color);
+//        if (null != color) switch (color) {
+//            case "red":
+//                g.setColor( Color.red );
+//                break;
+//            case "yellow":
+//                g.setColor( Color.yellow );
+//                break;
+//        }
+        //g.setColor( Color.red );
+        //g.fillRect( 0, 0, 400, 400);
         //text.paintComponents(g);
     }
     
