@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 public class Session extends JPanel {
     
     int i;
-    Slot[] slotArray = new Slot[3];
+    Slot[] slotArray = new Slot[4];
     Slot slot;
     JLabel title; //Title is the headline at the start of the slot, the day.
     
@@ -43,7 +43,7 @@ public class Session extends JPanel {
         
         for (i=0; i<inputNumberOfSlots; i++) {
             try {
-                Slot slot = new Slot (i+1, 5, 5, 0.8);
+                Slot slot = new Slot (i+1, 1);
                 slotArray[i] = slot;
                 conSlot.gridy++;
                 m.setConstraints(slotArray[i], conSlot);

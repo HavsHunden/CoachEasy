@@ -1,0 +1,5 @@
+serial, name, category, color
+1,Deadlift,main,red
+2,Bench Press,main,yellow
+3,Squat,main,green
+4,OH Press, comp, white

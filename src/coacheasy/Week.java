@@ -41,7 +41,7 @@ public class Week extends JPanel {
         add(title);
         
         for (i=0; i<inputNumerOfSessions; i++) {
-            session = new Session (2);
+            session = new Session (4);
             sessionArray[i] = session;
             conSession.gridy++;
             m.setConstraints(sessionArray[i], conSession);

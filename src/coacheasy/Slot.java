@@ -13,7 +13,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.io.FileReader;
 import java.lang.reflect.Field;
-import static javafx.scene.paint.Color.color;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -37,55 +36,52 @@ public class Slot extends JPanel {
     String name;
     String colorData;
     Color color;
+    int serialNumber;
+    int slotFormSerial;
+    
+    GridBagConstraints conLine;
+    GridBagLayout m;
     
     //This is for complimentary excercises, it takes only type, sets and reps.
-    public Slot (String inputtype, int inputPrimarySets, int inputPrimaryReps) {
+    public Slot (int excNumber, int inputPrimarySets, int inputPrimaryReps) throws Exception {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         
         Dimension d = new Dimension(300,20);
         
-        color = Color.LIGHT_GRAY;
+        serialNumber = excNumber;
+        setExercise();
         
-        line = new Line(inputtype, inputPrimarySets, inputPrimaryReps, color);
+        
+        line = new Line(name, inputPrimarySets, inputPrimaryReps, color);
         
         line.setAlignmentX(TOP_ALIGNMENT);
         line.setAlignmentY(TOP_ALIGNMENT);
         line.setMaximumSize(d);
-        line.setType(inputtype);
+        line.setType(name);
         add(line);
     }
     
     //This is for intensity controlled excercises
-    public Slot (int excNumber, int inputPrimarySets, int inputPrimaryReps, double inputPrimaryIntensity) throws Exception {
+    //public Slot (int excNumber, int inputPrimarySets, int inputPrimaryReps, double inputPrimaryIntensity) throws Exception {
+    public Slot (int excNumber, int inputSlotFormSerial) throws Exception {    
         
-        //Getting data from database
-        CSVReader reader = new CSVReader(new FileReader("data.csv"), ',', '"', 0);
-        String[] dataLine;
-        while ((dataLine = reader.readNext()) != null) {
-            if (Integer.parseInt(dataLine[0]) == excNumber) {
-                name = dataLine[1];
-                colorData = dataLine[3];
-                //System.out.println(color);
-            }
-        }
+        slotFormSerial = inputSlotFormSerial;
         
-        try {
-            Field field = Class.forName("java.awt.Color").getField(colorData);
-            color = (Color) field.get(null);
-        } catch (Exception e) {
-            color = null; // Not defined
-        }
+        setSlotForm();
+        
+        serialNumber = excNumber;
+        
+        setExercise();
+        
         
         //Calculating how many warmups we need
-        primaryIntensity = inputPrimaryIntensity;
         
         warmups = (int) Math.round((primaryIntensity-0.5)*10);
         
         //Fixing the GridBagLayout, using the same for all lines
-        GridBagLayout m = new GridBagLayout();
+        m = new GridBagLayout();
         setLayout(m);
         
-        GridBagConstraints conLine;
         conLine = new GridBagConstraints();
         
         conLine.gridy = 0;
@@ -95,18 +91,11 @@ public class Slot extends JPanel {
         conLine.weightx = 1;
         
         //Creating the warmup lines
-        int i;
-        for (i=0; i<warmups; i=i+1) {
-            warmupline = new Line(name, 1, inputPrimaryReps+1, color);
-            conLine.gridy = i;
-            
-            m.setConstraints(warmupline, conLine);
-            add(warmupline);
-        }
+        createWarmups();
 
         //Creating the primary line
         conLine.gridy = warmups;
-        line = new Line(name, inputPrimarySets, inputPrimaryReps, color);
+        line = new Line(name, primarySets, primaryReps, color);
         
         m.setConstraints(line, conLine);
         add(line);
@@ -116,6 +105,53 @@ public class Slot extends JPanel {
     
     public int getWarmups() {
         return warmups;
+    }
+    
+    
+    public void setSlotForm() throws Exception {
+        
+        CSVReader reader = new CSVReader(new FileReader("slotform.csv"), ',', '"', 1);
+        String[] dataLine;
+        while ((dataLine = reader.readNext()) != null) {
+            if (Integer.parseInt(dataLine[0]) == slotFormSerial) {
+                primarySets = Integer.parseInt(dataLine[1]);
+                primaryReps = Integer.parseInt(dataLine[2]);
+                primaryIntensity = Double.parseDouble(dataLine[3]);
+            }
+        }
+    }
+    
+    //Contacs exercise database and effectively decides which exercise is done. 
+    public void setExercise() throws Exception {
+        
+        CSVReader reader = new CSVReader(new FileReader("movements.csv"), ',', '"', 1);
+        String[] dataLine;
+        while ((dataLine = reader.readNext()) != null) {
+            if (Integer.parseInt(dataLine[0]) == serialNumber) {
+                name = dataLine[1];
+                colorData = dataLine[3];
+            }
+        }
+        try {
+            Field field = Class.forName("java.awt.Color").getField(colorData);
+            color = (Color) field.get(null);
+        } catch (Exception e) {
+            color = null; // Not defined
+        }
+    }
+    
+    
+    //Creates the warmup lines
+    public void createWarmups() {
+        
+        int i;
+        for (i=0; i<warmups; i=i+1) {
+            warmupline = new Line(name, 1, primaryReps+1, color);
+            conLine.gridy = i;
+            
+            m.setConstraints(warmupline, conLine);
+            add(warmupline);
+        }
     }
     
     public void paintComponent (Graphics g) {
