@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 public class Week extends JPanel {
     
     int i;
-    Session[] sessionArray = new Session[1];
+    Session[] sessionArray = new Session[2];
     Session session;
     JLabel title; //Title is the headline at the start of the week, the number.
     

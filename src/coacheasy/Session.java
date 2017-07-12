@@ -51,6 +51,7 @@ public class Session extends JPanel {
             } catch (Exception ex) {
                 Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         }
 
     }

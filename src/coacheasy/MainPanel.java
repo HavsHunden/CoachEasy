@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  */
 public class MainPanel extends JPanel{
     
-    Week week = new Week(1);
+    Week week = new Week(2);
     
     public MainPanel() {
         
