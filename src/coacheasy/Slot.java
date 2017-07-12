@@ -157,7 +157,7 @@ public class Slot extends JPanel {
     public void paintComponent (Graphics g) {
         //None of this matters right now...
         
-        System.out.println(color);
+        //System.out.println(color);
 //        if (null != color) switch (color) {
 //            case "red":
 //                g.setColor( Color.red );

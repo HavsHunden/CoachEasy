@@ -20,7 +20,14 @@ public class MainPanel extends JPanel{
     
     Week week = new Week(2);
     
+    int width = 800;
+    int height = 800;
+    
+    public Color panelColor = Color.white;
+    
     public MainPanel() {
+        
+        
         
         GridBagLayout m = new GridBagLayout();
         setLayout(m);
@@ -39,8 +46,8 @@ public class MainPanel extends JPanel{
     
     
     public void paintComponent (Graphics g) {
-        g.setColor( Color.white );
-        g.fillRect( 0, 0, 400, 400);
+        g.setColor(panelColor);
+        g.fillRect( 0, 0, width, height);
         //session1.slotArray[0].paintComponents(g);
         
         //text.paintComponents(g);

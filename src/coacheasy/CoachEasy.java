@@ -6,9 +6,14 @@
 package coacheasy;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -21,13 +26,31 @@ public class CoachEasy extends JFrame {
     
     MainPanel panel = new MainPanel();
     JLabel text = new JLabel("test");
+    int width = 800;
+    int height = 800;
+    
+    MouseListener la = new MouseAdapter() {
+        
+        
+        //mousePressed Experiment
+        @Override
+        public void mousePressed(MouseEvent e) {
+            
+            System.out.println("ja");
+
+        }
+    };
     
     public CoachEasy() {
         
         Container c = getContentPane();
-        c.add(panel, BorderLayout.CENTER);
+        //c.add(panel, BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(panel);
+        c.add(scrollPane, BorderLayout.CENTER);
         
-        setSize(400,400);
+        getContentPane().addMouseListener(la);
+        
+        setSize(width,height);
         setLocation(200,200);
         setVisible(true);
         

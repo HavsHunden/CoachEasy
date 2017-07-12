@@ -24,6 +24,7 @@ public class Session extends JPanel {
     Slot[] slotArray = new Slot[4];
     Slot slot;
     JLabel title; //Title is the headline at the start of the slot, the day.
+    JLabel spacer;
     
     public Session(int inputNumberOfSlots) {
         
@@ -53,6 +54,10 @@ public class Session extends JPanel {
             }
             
         }
+        spacer = new JLabel(" ");
+        conSlot.gridy++;
+        m.setConstraints(spacer, conSlot);
+        add(spacer);
 
     }
     
