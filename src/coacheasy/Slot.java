@@ -154,6 +154,10 @@ public class Slot extends JPanel {
         }
     }
     
+    public void setColorBlue() {
+        color = Color.BLUE;
+    }
+    
     public void paintComponent (Graphics g) {
         //None of this matters right now...
         

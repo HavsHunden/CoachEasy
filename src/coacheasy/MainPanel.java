@@ -9,14 +9,16 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
+import javax.swing.event.MouseInputListener;
 
 
 /**
  *
  * @author mabe6347
  */
-public class MainPanel extends JPanel{
+public class MainPanel extends JPanel implements MouseInputListener {
     
     Week week = new Week(2);
     
@@ -27,7 +29,7 @@ public class MainPanel extends JPanel{
     
     public MainPanel() {
         
-        
+        addMouseListener(this);
         
         GridBagLayout m = new GridBagLayout();
         setLayout(m);
@@ -44,6 +46,42 @@ public class MainPanel extends JPanel{
         add(week); 
     }
     
+    @Override
+    public void mousePressed(MouseEvent e) {
+        
+        System.out.println("test");
+        this.panelColor = Color.BLACK;
+        
+        //week.sessionArray[0].slot.setColorBlue();
+        this.week.sessionArray[0].slotArray[0].setColorBlue();
+        //this.week.sessionArray[0].reAddAll();
+        this.repaint();
+        
+        eventOutput("Mouse pressed (# of clicks: "
+                + e.getClickCount() + ")", e);
+    }
+    
+    public void mouseReleased(MouseEvent e) {
+        eventOutput("Mouse released (# of clicks: "
+                + e.getClickCount() + ")", e);
+    }
+    
+    public void mouseEntered(MouseEvent e) {
+        eventOutput("Mouse entered", e);
+    }
+    
+    public void mouseExited(MouseEvent e) {
+        eventOutput("Mouse exited", e);
+    }
+    
+    public void mouseClicked(MouseEvent e) {
+        eventOutput("Mouse clicked (# of clicks: "
+                + e.getClickCount() + ")", e);
+    }
+    
+    void eventOutput(String eventDescription, MouseEvent e) {
+        
+    }
     
     public void paintComponent (Graphics g) {
         g.setColor(panelColor);
@@ -51,5 +89,15 @@ public class MainPanel extends JPanel{
         //session1.slotArray[0].paintComponents(g);
         
         //text.paintComponents(g);
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

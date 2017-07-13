@@ -29,26 +29,12 @@ public class CoachEasy extends JFrame {
     int width = 800;
     int height = 800;
     
-    MouseListener la = new MouseAdapter() {
-        
-        
-        //mousePressed Experiment
-        @Override
-        public void mousePressed(MouseEvent e) {
-            
-            System.out.println("ja");
-
-        }
-    };
-    
     public CoachEasy() {
         
         Container c = getContentPane();
         //c.add(panel, BorderLayout.CENTER);
         JScrollPane scrollPane = new JScrollPane(panel);
         c.add(scrollPane, BorderLayout.CENTER);
-        
-        getContentPane().addMouseListener(la);
         
         setSize(width,height);
         setLocation(200,200);

@@ -25,13 +25,18 @@ public class Session extends JPanel {
     Slot slot;
     JLabel title; //Title is the headline at the start of the slot, the day.
     JLabel spacer;
+    int numberOfSlots;
+    GridBagConstraints conSlot;
+    GridBagLayout m;
     
     public Session(int inputNumberOfSlots) {
         
-        GridBagLayout m = new GridBagLayout();
+        numberOfSlots = inputNumberOfSlots;
+        
+        m = new GridBagLayout();
         setLayout(m);
         
-        GridBagConstraints conSlot = new GridBagConstraints();
+        conSlot = new GridBagConstraints();
         conSlot.gridx = 0;
         conSlot.gridy = 0;
         conSlot.anchor = GridBagConstraints.NORTHWEST;
@@ -42,7 +47,7 @@ public class Session extends JPanel {
         
         add(title);
         
-        for (i=0; i<inputNumberOfSlots; i++) {
+        for (i=0; i<numberOfSlots; i++) {
             try {
                 Slot slot = new Slot (i+1, 1);
                 slotArray[i] = slot;
@@ -60,5 +65,34 @@ public class Session extends JPanel {
         add(spacer);
 
     }
+    
+//    public void reAddAll() {
+//        
+//        m = new GridBagLayout();
+//        setLayout(m);
+//        
+//        conSlot = new GridBagConstraints();
+//        
+//        conSlot.gridx = 0;
+//        conSlot.gridy = 0;
+//        conSlot.anchor = GridBagConstraints.NORTHWEST;
+//        conSlot.weighty = 1;
+//        conSlot.weightx = 1;
+//        
+//        title = new JLabel("Monday");
+//        
+//        add(title);
+//        
+//        for (i=0; i<numberOfSlots; i++) {
+//            try {
+//                conSlot.gridy++;
+//                m.setConstraints(slotArray[i], conSlot);
+//                add(slotArray[i]);
+//            } catch (Exception ex) {
+//                Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            
+//        }
+//    }
     
 }
