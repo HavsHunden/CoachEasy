@@ -5,6 +5,8 @@
  */
 package coacheasy;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -12,10 +14,21 @@ import javax.swing.JPopupMenu;
  *
  * @author martin
  */
-public class RightClickPopup extends JPopupMenu {
+public class RightClickPopup extends JPopupMenu implements ActionListener {
     JMenuItem anItem;
-    public RightClickPopup(String title){
+    Session caller;
+    
+    public RightClickPopup(String title, Session inputCaller){
         anItem = new JMenuItem(title);
         add(anItem);
+        anItem.addActionListener(this);
+        
+        caller = inputCaller;
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        caller.addSlot(1, 1);
+        
     }
 }

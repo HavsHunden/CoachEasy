@@ -15,10 +15,13 @@ import javax.swing.event.MouseInputListener;
  */
 public class TitleLine extends JLabel implements MouseInputListener{
     
+    Session caller;
     
     
-    public TitleLine(String text) {
+    public TitleLine(String text, Session inputCaller) {
         super(text);
+        
+        caller = inputCaller;
         
         addMouseListener(this);
     }
@@ -26,7 +29,7 @@ public class TitleLine extends JLabel implements MouseInputListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == 3) {
-            RightClickPopup menu = new RightClickPopup("Add a slot...");
+            RightClickPopup menu = new RightClickPopup("Add a slot...", caller);
             menu.show(e.getComponent(), e.getX(), e.getY());
 
         }

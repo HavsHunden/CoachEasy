@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 public class Session extends JPanel {
     
     int i;
-    Slot[] slotArray = new Slot[4];
+    Slot[] slotArray = new Slot[5];
     Slot slot;
     TitleLine title; //Title is the headline at the start of the slot, the day.
     JLabel spacer;
@@ -43,7 +43,7 @@ public class Session extends JPanel {
         conSlot.weighty = 1;
         conSlot.weightx = 1;
         
-        title = new TitleLine("Monday");
+        title = new TitleLine("Monday", this);
         
         add(title);
         
@@ -66,33 +66,32 @@ public class Session extends JPanel {
 
     }
     
-//    public void reAddAll() {
-//        
-//        m = new GridBagLayout();
-//        setLayout(m);
-//        
-//        conSlot = new GridBagConstraints();
-//        
-//        conSlot.gridx = 0;
-//        conSlot.gridy = 0;
-//        conSlot.anchor = GridBagConstraints.NORTHWEST;
-//        conSlot.weighty = 1;
-//        conSlot.weightx = 1;
-//        
-//        title = new JLabel("Monday");
-//        
-//        add(title);
-//        
-//        for (i=0; i<numberOfSlots; i++) {
-//            try {
-//                conSlot.gridy++;
-//                m.setConstraints(slotArray[i], conSlot);
-//                add(slotArray[i]);
-//            } catch (Exception ex) {
-//                Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            
-//        }
-//    }
-    
+    public void addSlot(int typeSerial, int slotForm) {
+        try {
+            
+            Slot slot = new Slot(typeSerial, slotForm);
+            slotArray[numberOfSlots] = slot;
+            conSlot.gridy++;
+            m.setConstraints(slotArray[numberOfSlots], conSlot);
+            
+            remove(spacer);
+
+            add(slotArray[numberOfSlots]);
+            numberOfSlots++;
+            
+            conSlot.gridy++;
+            m.setConstraints(spacer, conSlot);
+            add(spacer);
+            
+            
+            revalidate();
+            System.out.println(numberOfSlots);
+            
+            
+            
+        } catch (Exception ex) {
+            Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
