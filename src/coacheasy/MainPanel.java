@@ -49,12 +49,7 @@ public class MainPanel extends JPanel implements MouseInputListener {
     @Override
     public void mousePressed(MouseEvent e) {
         
-        System.out.println("test");
         this.panelColor = Color.BLACK;
-        
-        //week.sessionArray[0].slot.setColorBlue();
-        this.week.sessionArray[0].slotArray[0].setColorBlue();
-        //this.week.sessionArray[0].reAddAll();
         this.repaint();
         
         eventOutput("Mouse pressed (# of clicks: "

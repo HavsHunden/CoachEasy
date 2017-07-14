@@ -23,7 +23,7 @@ public class Session extends JPanel {
     int i;
     Slot[] slotArray = new Slot[4];
     Slot slot;
-    JLabel title; //Title is the headline at the start of the slot, the day.
+    TitleLine title; //Title is the headline at the start of the slot, the day.
     JLabel spacer;
     int numberOfSlots;
     GridBagConstraints conSlot;
@@ -43,7 +43,7 @@ public class Session extends JPanel {
         conSlot.weighty = 1;
         conSlot.weightx = 1;
         
-        title = new JLabel("Monday");
+        title = new TitleLine("Monday");
         
         add(title);
         
