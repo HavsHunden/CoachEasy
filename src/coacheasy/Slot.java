@@ -11,10 +11,12 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseEvent;
 import java.io.FileReader;
 import java.lang.reflect.Field;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.event.MouseInputListener;
 
 /**
  *
@@ -24,7 +26,7 @@ import javax.swing.JPanel;
  * There are two types of slots represented as constructors - complimentary
  * and intensity controlled.
  */
-public class Slot extends JPanel {
+public class Slot extends JPanel implements MouseInputListener {
     Line line;
     Line warmupline;
     
@@ -173,6 +175,43 @@ public class Slot extends JPanel {
         //g.setColor( Color.red );
         //g.fillRect( 0, 0, 400, 400);
         //text.paintComponents(g);
+    }
+
+    @Override
+    
+    //This isnt working. Why?
+    
+    public void mouseClicked(MouseEvent e) {
+        System.out.println("test");
+        if (e.getButton() == 3) {
+            RightClickOnSlot menu = new RightClickOnSlot("Edit slot...", this);
+            menu.show(e.getComponent(), e.getX(), e.getY());
+
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
     }
     
 }

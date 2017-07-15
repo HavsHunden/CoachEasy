@@ -75,7 +75,7 @@ public class Session extends JPanel {
             
             slotArray.add(slot);
             conSlot.gridy++;
-            m.setConstraints(slotArray.get(i), conSlot);
+            m.setConstraints(slotArray.get(numberOfSlots), conSlot);
             
             remove(spacer);
             
