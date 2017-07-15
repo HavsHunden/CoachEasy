@@ -21,9 +21,9 @@ public class RightClickPopup extends JPopupMenu implements ActionListener {
     public RightClickPopup(String title, Session inputCaller){
         anItem = new JMenuItem(title);
         add(anItem);
-        anItem.addActionListener(this);
-        
+
         caller = inputCaller;
+        anItem.addActionListener(this);
     }
     
     @Override

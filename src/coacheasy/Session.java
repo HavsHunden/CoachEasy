@@ -7,6 +7,7 @@ package coacheasy;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -21,7 +22,7 @@ import javax.swing.JPanel;
 public class Session extends JPanel {
     
     int i;
-    Slot[] slotArray = new Slot[5];
+    ArrayList <Slot> slotArray = new ArrayList<Slot>();
     Slot slot;
     TitleLine title; //Title is the headline at the start of the slot, the day.
     JLabel spacer;
@@ -50,10 +51,11 @@ public class Session extends JPanel {
         for (i=0; i<numberOfSlots; i++) {
             try {
                 Slot slot = new Slot (i+1, 1);
-                slotArray[i] = slot;
+                slotArray.add(slot);
                 conSlot.gridy++;
-                m.setConstraints(slotArray[i], conSlot);
-                add(slotArray[i]);
+                m.setConstraints(slotArray.get(i), conSlot);
+                
+                add(slotArray.get(i));
             } catch (Exception ex) {
                 Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -70,13 +72,14 @@ public class Session extends JPanel {
         try {
             
             Slot slot = new Slot(typeSerial, slotForm);
-            slotArray[numberOfSlots] = slot;
+            
+            slotArray.add(slot);
             conSlot.gridy++;
-            m.setConstraints(slotArray[numberOfSlots], conSlot);
+            m.setConstraints(slotArray.get(i), conSlot);
             
             remove(spacer);
-
-            add(slotArray[numberOfSlots]);
+            
+            add(slotArray.get(numberOfSlots));
             numberOfSlots++;
             
             conSlot.gridy++;
