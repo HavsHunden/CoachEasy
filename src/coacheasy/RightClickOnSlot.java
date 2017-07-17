@@ -15,8 +15,8 @@ import javax.swing.JPopupMenu;
  * @author martin
  */
 public class RightClickOnSlot extends JPopupMenu implements ActionListener {
-    JMenuItem anItem;
-    Slot caller;
+    private JMenuItem anItem;
+    private Slot caller;
     
     public RightClickOnSlot(String title, Slot inputCaller){
         anItem = new JMenuItem(title);
@@ -28,6 +28,7 @@ public class RightClickOnSlot extends JPopupMenu implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         
     }
 }

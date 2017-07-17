@@ -44,8 +44,14 @@ public class Slot extends JPanel implements MouseInputListener {
     GridBagConstraints conLine;
     GridBagLayout m;
     
+    //For dragging and stuff
+    
+    InvisiblePane invpane;
+    
     //This is for complimentary excercises, it takes only type, sets and reps.
     public Slot (int excNumber, int inputPrimarySets, int inputPrimaryReps) throws Exception {
+        
+        addMouseListener(this);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         
         Dimension d = new Dimension(300,20);
@@ -65,7 +71,9 @@ public class Slot extends JPanel implements MouseInputListener {
     
     //This is for intensity controlled excercises
     //public Slot (int excNumber, int inputPrimarySets, int inputPrimaryReps, double inputPrimaryIntensity) throws Exception {
-    public Slot (int excNumber, int inputSlotFormSerial) throws Exception {    
+    public Slot (int excNumber, int inputSlotFormSerial) throws Exception {
+        
+        addMouseListener(this);
         
         slotFormSerial = inputSlotFormSerial;
         
@@ -208,6 +216,7 @@ public class Slot extends JPanel implements MouseInputListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        invpane = new InvisiblePane(this,e.getX(), e.getY());
     }
 
     @Override

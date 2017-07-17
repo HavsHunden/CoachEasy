@@ -28,12 +28,13 @@ public class CoachEasy extends JFrame {
     JLabel text = new JLabel("test");
     int width = 800;
     int height = 800;
+    JScrollPane scrollPane;
     
     public CoachEasy() {
         
         Container c = getContentPane();
         //c.add(panel, BorderLayout.CENTER);
-        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane = new JScrollPane(panel);
         c.add(scrollPane, BorderLayout.CENTER);
         
         setSize(width,height);
